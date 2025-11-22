@@ -11,4 +11,4 @@ Messagebox
 To install external modules:
 Run pip install tkinter
 To execute the project:
-Run billing system.py
+Run expenses_app.py
