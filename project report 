@@ -1,1 +1,135 @@
-se
+ Expense Tracker – Project Report
+
+Submitted by: Gagan Tyagi — 25BCY10010
+
+
+
+1. Introduction
+
+Many times we spend money casually and later forget where it all went. Especially as students, it becomes difficult to track daily personal expenses. To solve this everyday problem, I developed a simple Python-based Expense Tracker application.
+
+This project helps store everyday spending details so that a person can check and control their expenses more effectively.
+
+
+
+
+2. Aim of the Projec
+
+The main purpose of this project is:
+
+To record daily expenses in a simple format
+
+To store the entries permanently using a database
+
+To allow users to view their spending history whenever required
+
+
+This project encourages better financial habits.
+
+
+
+3. Tools Used
+
+Python 3 – to write the main program
+
+SQLite – to store the data in a database file
+
+VS Code – as the development environment
+
+
+The project works completely offline.
+
+
+
+4. Working of the System
+
+The program creates a database file named transactions.db.
+In this database, a table is created to store:
+
+Expense title
+
+Amount spent
+
+Date of expense
+
+
+Whenever a new entry is added:
+
+1. The user inputs the details
+
+
+2. The program stores the entry in the database
+
+
+3. All previously saved entries can be viewed anytime
+
+
+
+The working is straightforward and practical.
+
+
+
+5. Project Outcome / Learning
+
+Through this project, I learned:
+
+How Python interacts with databases
+
+Writing and executing SQL queries
+
+Storing and retrieving real-time data
+
+Understanding data organization in applications
+
+
+This hands-on experience made database concepts much clearer.
+
+
+6. Output Description
+
+After entering the expense details, the program confirms that the data is saved successfully.
+The user can then display the list of all stored expenses neatly.
+This helps in clearly understanding where the money has been spent over time.
+
+7. Advantages
+
+Very easy to operate
+
+Data remains saved permanently
+
+No internet connection needed
+
+Helpful for daily expense tracking
+
+
+8. Future Enhancements
+
+There are many improvements that can be added:
+
+Categories such as food, travel, shopping, etc.
+
+Charts and graphs for visual analysis
+
+Exporting data to Excel or PDF
+
+A graphical user interface or a mobile app
+
+
+With further development, it can become a complete budgeting tol.
+
+
+9. Conclusion
+
+This project gave me a good understanding of Python and database integration.
+It also made me realize the importance of keeping track of expenditures.
+Even though the application is simple, it serves a real-life purpose and can be expanded with more features in the future.
+
+
+10. References
+
+Python Documentation (sqlite3 module)
+
+YouTube tutorials related to database programming
+
+Online articles and personal experimentation
+
