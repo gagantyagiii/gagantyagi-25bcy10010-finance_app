@@ -1,8 +1,9 @@
 from tkinter import*
 import random
 import os
-from tkinter import messageb
+from tkinter import messagebox
 
+# ============main============================
 class Bill_App:
     def __init__(self, root):
         self.root = root
@@ -11,39 +12,39 @@ class Bill_App:
         bg_color = "#badc57"
         title = Label(self.root, text="Billing Software", font=('times new roman', 30, 'bold'), pady=2, bd=12, bg="#badc57", fg="Black", relief=GROOVE)
         title.pack(fill=X)
-    
+    # ================variables=======================
         self.sanitizer = IntVar()
         self.mask = IntVar()
         self.hand_gloves = IntVar()
         self.dettol = IntVar()
         self.newsprin = IntVar()
         self.thermal_gun = IntVar()
-    
+    # ============grocery==============================
         self.rice = IntVar()
         self.food_oil = IntVar()
         self.wheat = IntVar()
         self.daal = IntVar()
         self.flour = IntVar()
         self.maggi = IntVar()
-        
+        #=============coldDtinks=============================
         self.sprite = IntVar()
         self.limka = IntVar()
         self.mazza = IntVar()
         self.coke = IntVar()
         self.fanta = IntVar()
         self.mountain_duo = IntVar()
-    
+    # ==============Total product price================
         self.medical_price = StringVar()
         self.grocery_price = StringVar()
         self.cold_drinks_price = StringVar()
-    
+    # ==============Customer==========================
         self.c_name = StringVar()
         self.c_phone = StringVar()
         self.bill_no = StringVar()
         x = random.randint(1000, 9999)
         self.bill_no.set(str(x))
         self.search_bill = StringVar()
-    
+    # ===============Tax================================
         self.medical_tax = StringVar()
         self.grocery_tax = StringVar()
         self.cold_drinks_tax = StringVar()
@@ -330,4 +331,95 @@ class Bill_App:
             self.txtarea.insert(END, f"\n Fanta\t\t{self.newsprin.get()}\t\t{self.c_d_f_p}")
         if self.mountain_duo.get() != 0:
             self.txtarea.insert(END, f"\n Mountain Duo\t\t{self.sanitizer.get()}\t\t{self.c_m_d}")
-            self.txtarea.insert(END, f"\n---
+            self.txtarea.insert(END, f"\n--------------------------------")
+        # ===============taxes==============================
+        if self.medical_tax.get() != '0.0':
+            self.txtarea.insert(END, f"\n Medical Tax\t\t\t{self.medical_tax.get()}")
+        if self.grocery_tax.get() != '0.0':
+            self.txtarea.insert(END, f"\n Grocery Tax\t\t\t{self.grocery_tax.get()}")
+        if self.cold_drinks_tax.get() != '0.0':
+            self.txtarea.insert(END, f"\n Cold Drinks Tax\t\t\t{self.cold_drinks_tax.get()}")
+
+        self.txtarea.insert(END, f"\n Total Bil:\t\t\t Rs.{self.total_bill}")
+        self.txtarea.insert(END, f"\n--------------------------------")
+        self.save_bill()
+
+    #=========savebill============================
+    def save_bill(self):
+        op = messagebox.askyesno("Save Bill", "Do you want to save the bill?")
+        if op > 0:
+            self.bill_data = self.txtarea.get('1.0', END)
+            f1 = open("bills/"+str(self.bill_no.get())+".txt", "w")
+            f1.write(self.bill_data)
+            f1.close()
+            messagebox.showinfo("Saved", f"Bill no:{self.bill_no.get()} Saved Successfully")
+        else:
+           return
+
+    # ===================find_bill================================
+    def find_bill(self):
+        present = "no"
+        for i in os.listdir("bills/"):
+            if i.split('.')[0] == self.search_bill.get():
+                f1 = open(f"bills/{i}", "r")
+                self.txtarea.delete("1.0", END)
+                for d in f1:
+                    self.txtarea.insert(END, d)
+                    f1.close()
+                present = "yes"
+        if present == "no":
+            messagebox.showerror("Error", "Invalid Bill No")
+
+    # ======================clear-bill======================
+    def clear_data(self):
+        op = messagebox.askyesno("Clear", "Do you really want to Clear?")
+        if op > 0:
+            self.sanitizer.set(0)
+            self.mask.set(0)
+            self.hand_gloves.set(0)
+            self.dettol.set(0)
+            self.newsprin.set(0)
+            self.thermal_gun.set(0)
+    # ============grocery==============================
+            self.rice.set(0)
+            self.food_oil.set(0)
+            self.wheat.set(0)
+            self.daal.set(0)
+            self.flour.set(0)
+            self.maggi.set(0)
+    # =============coldDrinks=============================
+            self.sprite.set(0)
+            self.limka.set(0)
+            self.mazza.set(0)
+            self.coke.set(0)
+            self.fanta.set(0)
+            self.mountain_duo.set(0)
+    # ====================taxes================================
+            self.medical_price.set("")
+            self.grocery_price.set("")
+            self.cold_drinks_price.set("")
+
+            self.medical_tax.set("")
+            self.grocery_tax.set("")
+            self.cold_drinks_tax.set("")
+
+            self.c_name.set("")
+            self.c_phone.set("")
+
+            self.bill_no.set("")
+            x = random.randint(1000, 9999)
+            self.bill_no.set(str(x))
+
+            self.search_bill.set("")
+            self.welcome_bill()
+
+    # ===========exit=======================
+    def exit_app(self):
+        op = messagebox.askyesno("Exit", "Do you really want to exit?")
+        if op > 0:
+            self.root.destroy()
+
+
+root = Tk()
+obj = Bill_App(root)
+root.mainloop()
